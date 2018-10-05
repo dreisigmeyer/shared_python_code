@@ -22,7 +22,7 @@ def get_inventor_info(applicant, grant_year):
         try:  # For 2005 and later patents
             sequence_num = applicant.get('sequence')
         except Exception:  # For pre-2005 patents
-            sequence_num = None
+            sequence_num = ''
         last_name = clean_up_inventor_name(applicant, app_ln)
         last_name, suffix = split_name_suffix(last_name)
         first_name = clean_up_inventor_name(applicant, app_fn)

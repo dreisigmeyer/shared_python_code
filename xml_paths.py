@@ -60,7 +60,7 @@ def inv_xml_paths(grant_year):
         app_alt1 = 'SDOBI/B700/B720'
         app_alt2 = ''
     elif 1976 <= grant_year <= 2001:
-        app_alt1 = 'inventors'
+        app_alt1 = 'inventors/'
         app_alt2 = ''
     else:
         raise UserWarning('Incorrect grant year: ' + str(grant_year))
@@ -98,3 +98,11 @@ def metadata_xml_paths(grant_year):
     _, _, _, app_state, _ = inv_rel_xml_paths(grant_year)
     prdn, app_date, app_alt1, app_alt2, inv_alt1, inv_alt2, assg = inv_xml_paths(grant_year)
     return prdn, grant_date, app_date, app_alt1, app_alt2, inv_alt1, inv_alt2, assg, app_state
+
+
+def carra_xml_paths(grant_year):
+    '''
+    '''
+    _, _, _, _, _, _, state, _, _ = assg_xml_paths(grant_year)
+    prdn, app_date, app_alt1, app_alt2, inv_alt1, inv_alt2, assg = inv_xml_paths(grant_year)
+    return prdn, app_date, app_alt1, app_alt2, inv_alt1, inv_alt2, assg, state
