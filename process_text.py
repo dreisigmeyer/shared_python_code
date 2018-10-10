@@ -29,8 +29,8 @@ def standardize_name(in_str):
     '''
     in_str = urllib.parse.unquote_plus(in_str)  # replace %xx
     in_str = html.unescape(in_str)  # replace HTML entities
-    in_str = ' '.join(in_str.split())  # single spaces only
     in_str = in_str.replace('&', ' AND ')  # replace any remaining ampersands
+    in_str = ' '.join(in_str.split())  # single spaces only
     in_str = ''.join(c for c in in_str if c.isalnum() or c == ' ')  # alphanumeric and spaces only
     in_str = in_str.upper()  # all upper case
     return in_str.strip()  # no leading or trailing whitespace
