@@ -94,10 +94,10 @@ def inv_rel_xml_paths(grant_year):
 def metadata_xml_paths(grant_year):
     '''
     '''
-    _, grant_date, _, _, _, _, _, _, _ = assg_xml_paths(grant_year)
+    _, grant_date, _, _, orgname, _, _, _, _ = assg_xml_paths(grant_year)
     _, _, _, app_state, _ = inv_rel_xml_paths(grant_year)
     prdn, app_date, app_alt1, app_alt2, inv_alt1, inv_alt2, assg = inv_xml_paths(grant_year)
-    return prdn, grant_date, app_date, app_alt1, app_alt2, inv_alt1, inv_alt2, assg, app_state
+    return prdn, grant_date, app_date, app_alt1, app_alt2, inv_alt1, inv_alt2, assg, app_state, orgname
 
 
 def carra_xml_paths(grant_year):
