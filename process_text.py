@@ -30,6 +30,7 @@ def standardize_name(in_str):
     in_str = urllib.parse.unquote_plus(in_str)  # replace %xx
     in_str = html.unescape(in_str)  # replace HTML entities
     in_str = ' '.join(in_str.split())  # single spaces only
+    in_str = in_str.replace('&', ' AND ')  # replace any remaining ampersands
     in_str = ''.join(c for c in in_str if c.isalnum() or c == ' ')  # alphanumeric and spaces only
     in_str = in_str.upper()  # all upper case
     return in_str.strip()  # no leading or trailing whitespace
@@ -103,3 +104,14 @@ def split_name_suffix(in_name):
             return last_nm, holder[2]
     else:
         return in_name, ''
+
+
+def get_assignee_info(assignee, xml_path):
+    '''
+    '''
+    try:
+        assignee_info = assignee.find(xml_path).text
+        assignee_info = standardize_name(assignee_info)
+    except Exception:  # may have assignee name from USPTO DVD
+        assignee_info = ''
+    return assignee_info
