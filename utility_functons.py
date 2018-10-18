@@ -29,7 +29,7 @@ def initialize_close_city_spelling(file_path):
     with open(file_path) as json_data:
         CLOSE_CITY_SPELLINGS = json.load(json_data)
 
-    def get_zip3(applicant_state, applicant_city,
+    def get_zip3(in_state, in_city,
                  zip3_json, cleaned_cities_json, inventor_names_json=None,
                  last_name='', first_name='', middle_initial='',
                  flag=0):
@@ -44,15 +44,15 @@ def initialize_close_city_spelling(file_path):
             possible_zip3s = set()
         else:
             possible_zip3s = dict()
-        possible_cities = [applicant_city]
-        cleaned_cities = cleaned_cities_json.get(applicant_state)
+        possible_cities = [in_city]
+        cleaned_cities = cleaned_cities_json.get(in_state)
         if cleaned_cities:
             for hold_city, spellings in cleaned_cities.items():
                 if hold_city not in possible_cities:
-                    if applicant_city[:20] in spellings:
+                    if in_city[:20] in spellings:
                         possible_cities.append(hold_city)
-        city_names = zip3_json.get(applicant_state)
-        close_city_names = CLOSE_CITY_SPELLINGS.get(applicant_state)
+        city_names = zip3_json.get(in_state)
+        close_city_names = CLOSE_CITY_SPELLINGS.get(in_state)
         if close_city_names:
             close_city_names_keys = close_city_names.keys()
         else:
@@ -63,21 +63,21 @@ def initialize_close_city_spelling(file_path):
                     possible_zip3s.update(close_city_names[alias])
                 else:
                     for zip3 in close_city_names[alias]:
-                        possible_zip3s[zip3] = applicant_state
+                        possible_zip3s[zip3] = in_state
                 continue
-            if applicant_state not in CLOSE_CITY_SPELLINGS.keys():  # is this a real state?
+            if in_state not in CLOSE_CITY_SPELLINGS.keys():  # is this a real state?
                 continue
-            CLOSE_CITY_SPELLINGS[applicant_state][alias] = set()  # this isn't there
+            CLOSE_CITY_SPELLINGS[in_state][alias] = set()  # this isn't there
             if city_names:  # this may be a new misspelling, which we're going to check for now
                 for city, zips in city_names.items():
                     str_match = SeqMatcher(None, alias, city)
                     if str_match.ratio() >= 0.9:  # good enough match
-                        CLOSE_CITY_SPELLINGS[applicant_state][alias].update(zips)
+                        CLOSE_CITY_SPELLINGS[in_state][alias].update(zips)
                         if inventor_names_json:
                             possible_zip3s.update(zips)
                         else:
                             for zip3 in zips:
-                                possible_zip3s[zip3] = applicant_state
+                                possible_zip3s[zip3] = in_state
         # If we couldn't find a zip3 we'll see if we can correct the city, state or country
         if not possible_zip3s and not flag:
             if inventor_names_json:
@@ -90,8 +90,8 @@ def initialize_close_city_spelling(file_path):
                     locations = []
                 if locations:
                     for location in locations:
-                        app_city = applicant_city[:20]
-                        app_state = applicant_state
+                        app_city = in_city[:20]
+                        app_state = in_state
                         possible_city = location['city']
                         possible_state = location['state']
                         # Foreign national
@@ -117,7 +117,7 @@ def initialize_close_city_spelling(file_path):
                 # Maybe the state is wrong so look for a matching city name
                 states = zip3_json.keys()
                 for state in states:
-                    zips = zip3_json[state].get(applicant_city)
+                    zips = zip3_json[state].get(in_city)
                     if zips:
                         for zip3 in zips:
                             possible_zip3s[zip3] = state
