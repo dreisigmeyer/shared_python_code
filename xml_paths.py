@@ -8,7 +8,9 @@ magic_validator = etree.XMLParser(
 
 
 def assg_xml_paths(grant_year):
-    '''
+    '''Returns the assignee XML paths for a patent documentation
+
+    grant_year -- the grant year of a patent
     '''
     if grant_year >= 2005:
         prdn = "us-bibliographic-data-grant/publication-reference/document-id/doc-number"
@@ -46,7 +48,9 @@ def assg_xml_paths(grant_year):
 
 
 def inv_xml_paths(grant_year):
-    '''
+    '''Returns the inventor XML paths for a patent documentation
+
+    grant_year -- the grant year of a patent
     '''
     prdn, _, appl_date, assg, _, _, _, _, _ = assg_xml_paths(grant_year)
     inv_alt1 = ''
@@ -68,7 +72,9 @@ def inv_xml_paths(grant_year):
 
 
 def inv_rel_xml_paths(grant_year):
-    '''
+    '''Returns the inventor relative XML paths for a patent documentation
+
+    grant_year -- the grant year of a patent
     '''
     _, _, _, _, _, _, assg_state, _, _ = assg_xml_paths(grant_year)
     if grant_year >= 2005:
@@ -92,7 +98,9 @@ def inv_rel_xml_paths(grant_year):
 
 
 def metadata_xml_paths(grant_year):
-    '''
+    '''Returns the metadata for a patent documentation
+
+    grant_year -- the grant year of a patent
     '''
     _, grant_date, _, _, orgname, _, _, _, _ = assg_xml_paths(grant_year)
     _, _, _, app_state, _ = inv_rel_xml_paths(grant_year)
@@ -101,7 +109,9 @@ def metadata_xml_paths(grant_year):
 
 
 def carra_xml_paths(grant_year):
-    '''
+    '''Returns the CARRA information for a patent documentation
+
+    grant_year -- the grant year of a patent
     '''
     _, _, _, _, _, _, state, _, _ = assg_xml_paths(grant_year)
     prdn, app_date, app_alt1, app_alt2, inv_alt1, inv_alt2, assg = inv_xml_paths(grant_year)

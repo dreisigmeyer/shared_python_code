@@ -6,7 +6,10 @@ from .xml_paths import inv_rel_xml_paths
 
 
 def get_inventor_info(applicant, grant_year):
-    '''
+    '''Get the basic information about and inventor from the XML files.
+
+    applicant -- the applicant on the XML file
+    grant_year -- the year the patent was granted in
     '''
     app_ln, app_fn, app_city, app_state, _ = inv_rel_xml_paths(grant_year)
     try:

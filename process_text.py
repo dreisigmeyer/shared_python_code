@@ -8,8 +8,9 @@ pat_num_re = re.compile(r'([A-Z]*)0*([0-9]+)')
 
 
 def clean_patnum(patnum):
-    '''
-    Removes extraneous zero padding
+    '''Removes extraneous zero padding
+
+    patnum -- the original patent number
     '''
     pat_num = patnum.strip().upper()
     hold_pat_num = pat_num_re.match(pat_num).groups()
@@ -22,10 +23,11 @@ def clean_patnum(patnum):
 
 
 def standardize_name(in_str):
-    '''
-    This cleans and standardizes strings, removing HTML and URL encodings.
+    '''This cleans and standardizes strings, removing HTML and URL encodings.
     It keeps any UTF8 chracters and numbers and replaces all whitespace
     with a single space.  The returned string is not necessarily ASCII.
+
+    in_str -- the original string
     '''
     in_str = urllib.parse.unquote_plus(in_str)  # replace %xx
     in_str = html.unescape(in_str)  # replace HTML entities
@@ -37,7 +39,9 @@ def standardize_name(in_str):
 
 
 def standardize_name_late_of(in_str):
-    '''
+    '''Remove the "LATE OF" from a string
+
+    in_str -- the original string
     '''
     in_str = standardize_name(in_str)
     in_str = re.sub('\s*LATE\s*OF\s*', '', in_str)  # deceased inventors
@@ -45,7 +49,10 @@ def standardize_name_late_of(in_str):
 
 
 def clean_up_inventor_name(applicant, xml_path):
-    '''
+    '''Cleans up the inventor names
+
+    applicant -- the applicant on the XML document
+    xml_path -- the XML path to the applicant
     '''
     applicant_text = applicant.find(xml_path).text
     applicant_text = standardize_name_late_of(applicant_text)
@@ -53,7 +60,9 @@ def clean_up_inventor_name(applicant, xml_path):
 
 
 def standardize_name_cdp(in_str):
-    '''
+    '''Stnadardizes the name of a Census Designated Place
+
+    in_str -- the original string
     '''
     in_str = standardize_name(in_str)
     in_str = re.sub('\s*Census\s*Designated\s*Place\s*', '', in_str)
@@ -61,8 +70,9 @@ def standardize_name_cdp(in_str):
 
 
 def split_first_name(in_name):
-    '''
-    Get middle name out of first name
+    '''Get middle name out of first name of an inventor
+
+    in_name -- the original name from the XML document
     '''
     holder = in_name.split(' ', 1)
     if len(holder) > 1:
@@ -72,8 +82,9 @@ def split_first_name(in_name):
 
 
 def split_name_suffix(in_name):
-    '''
-    Takes the suffix off the last name
+    '''Takes the suffix off the last name of an inventor
+
+    in_name -- the original name from the XML document
     '''
     # These are the generational suffixes.
     suffix_list = [
@@ -107,7 +118,10 @@ def split_name_suffix(in_name):
 
 
 def get_assignee_info(assignee, xml_path):
-    '''
+    '''Returns a standardized assignee name
+
+    assignee -- the assignee on an XML patent
+    xml_path -- the path to the assignee name
     '''
     try:
         assignee_info = assignee.find(xml_path).text
