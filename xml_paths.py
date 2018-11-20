@@ -1,5 +1,6 @@
 from lxml import etree
 
+# The XML validator we use throughout
 magic_validator = etree.XMLParser(
     dtd_validation=False,
     resolve_entities=False,

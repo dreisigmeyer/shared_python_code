@@ -85,9 +85,9 @@ initialize_close_city_spelling(file_path):
 	file_path -- the path to the CLOSE_CITY_SPELLINGS json file  
 
 	get_zip3(in_state, in_city,  
-				 zip3_json, cleaned_cities_json, inventor_names_json=None,  
-				 last_name='', first_name='', middle_initial='',  
-				 flag=0):  
+			zip3_json, cleaned_cities_json, inventor_names_json=None,  
+			last_name='', first_name='', middle_initial='',  
+			flag=0):  
 		Attempts to find a zip3 from an applicant's city and state information.  
 
 		in_state -- the state to find the zip3 in  
@@ -102,4 +102,38 @@ initialize_close_city_spelling(file_path):
 		flag -- is for when we call this function again and avoid infinite recursion.  
 		inventor_names_json determines if this is assigning zip3s to an assignee  
 		or an inventor.
+```
+
+**xml_path.py :**  
+This gives the XML paths for assignee, inventor etc. information.
+It also defines the `magic_validator` used for reading in the XML files.  
+```
+assg_xml_paths(grant_year):  
+	Returns the assignee XML paths for a patent documentation  
+
+	grant_year -- the grant year of a patent
+```
+```
+inv_xml_paths(grant_year):  
+	Returns the inventor XML paths for a patent documentation  
+
+	grant_year -- the grant year of a patent
+```
+```
+inv_rel_xml_paths(grant_year):  
+	Returns the inventor relative XML paths for a patent documentation  
+
+	grant_year -- the grant year of a patent
+```
+```
+metadata_xml_paths(grant_year):  
+	Returns the metadata for a patent documentation  
+
+	grant_year -- the grant year of a patent
+```
+```
+carra_xml_paths(grant_year):  
+	Returns the CARRA information for a patent documentation  
+
+	grant_year -- the grant year of a patent
 ```
