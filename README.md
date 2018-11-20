@@ -69,7 +69,7 @@ split_seq(seq, NUMBER_OF_PROCESSES):
 ```
 ```
 initialize_close_city_spelling(file_path):  
-	This uses a closure to return the get_zip3 function with its own copy  
+    This uses a closure to return the get_zip3 function with its own copy  
     of the CLOSE_CITY_SPELLINGS.  get_zip3 returns possible zip3s of a  
     city-state combination, taking into account potential city mispellings,  
     incorrect state/country abbreviations, and prior residencies.  
