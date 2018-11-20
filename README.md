@@ -12,12 +12,15 @@ get_inventor_info(applicant, grant_year):
 ```
 
 **process_text.py :**  
->clean_patnum(patnum):
+```
+clean_patnum(patnum):
 	Removes extraneous zero padding  
 	patnum -- the original patent number
-
->standardize_name(in_str):  
+```
+```
+standardize_name(in_str):  
 	This cleans and standardizes strings, removing HTML and URL encodings.  
 	It keeps any UTF8 chracters and numbers and replaces all whitespace  
 	with a single space.  The returned string is not necessarily ASCII.  
-	in_str -- the original string  
+	in_str -- the original string
+```
