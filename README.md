@@ -8,6 +8,7 @@ This deals with getting inventor information from the XML files.
 ```
 get_inventor_info(applicant, grant_year):  
 	Get the basic information about and inventor from the XML files.  
+
 	applicant -- the applicant on the XML file  
 	grant_year -- the year the patent was granted in
 ```
@@ -17,6 +18,7 @@ This contains functions to clean up and standardized text taken from the XML fil
 ```
 clean_patnum(patnum):
 	Removes extraneous zero padding  
+
 	patnum -- the original patent number
 ```
 ```
@@ -24,16 +26,19 @@ standardize_name(in_str):
 	This cleans and standardizes strings, removing HTML and URL encodings.  
 	It keeps any UTF8 chracters and numbers and replaces all whitespace  
 	with a single space.  The returned string is not necessarily ASCII.  
+
 	in_str -- the original string
 ```
 ```
 standardize_name_late_of(in_str):  
     Remove the "LATE OF" from a string  
+
     in_str -- the original string  
 ```
 ```
 clean_up_inventor_name(applicant, xml_path):  
     Cleans up the inventor names  
+
     applicant -- the applicant on the XML document  
     xml_path -- the XML path to the applicant  
 ```
@@ -45,16 +50,19 @@ standardize_name_cdp(in_str):
 ```
 split_first_name(in_name):  
     Get middle name out of first name of an inventor  
+
     in_name -- the original name from the XML document  
 ```
 ```
 split_name_suffix(in_name):  
     Takes the suffix off the last name of an inventor  
+
     in_name -- the original name from the XML document  
 ```
 ```
 get_assignee_info(assignee, xml_path):  
     Returns a standardized assignee name  
+
     assignee -- the assignee on an XML patent  
     xml_path -- the path to the assignee name  
 ```
@@ -64,6 +72,7 @@ This is a collection of general reused functions.
 ```
 split_seq(seq, NUMBER_OF_PROCESSES):  
     Slices a sequence into NUMBER_OF_PROCESSES pieces of roughly the same size  
+
     seq -- the original sequence to be split  
     NUMBER_OF_PROCESSES -- the number of pieces to split seq into  
 ```
@@ -80,6 +89,7 @@ initialize_close_city_spelling(file_path):
                  last_name='', first_name='', middle_initial='',  
                  flag=0):  
         Attempts to find a zip3 from an applicant's city and state information.  
+
         in_state -- the state to find the zip3 in  
         in_city -- the city to find the zip3 for  
         zip3_json -- the json file with city-state to zip3 mappings  
