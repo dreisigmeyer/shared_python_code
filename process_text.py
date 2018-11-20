@@ -60,7 +60,7 @@ def clean_up_inventor_name(applicant, xml_path):
 
 
 def standardize_name_cdp(in_str):
-    '''Stnadardizes the name of a Census Designated Place
+    '''Standardizes the name of a Census Designated Place
 
     in_str -- the original string
     '''
