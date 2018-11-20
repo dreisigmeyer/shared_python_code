@@ -12,7 +12,8 @@ grant_year -- the year the patent was granted in
 **process_text.py :**  
 >clean_patnum(patnum):
 Removes extraneous zero padding  
-patnum -- the original patent number  
+patnum -- the original patent number
+
 >standardize_name(in_str):  
 This cleans and standardizes strings, removing HTML and URL encodings.  
 It keeps any UTF8 chracters and numbers and replaces all whitespace  
