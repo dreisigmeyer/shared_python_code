@@ -62,7 +62,7 @@ def inv_xml_paths(grant_year):
         inv_alt1 = 'us-bibliographic-data-grant/parties/inventors/'
         inv_alt2 = 'us-bibliographic-data-grant/us-parties/inventors/'
     elif 2002 <= grant_year <= 2004:
-        app_alt1 = 'SDOBI/B700/B720'
+        app_alt1 = 'SDOBI/B700/B720/B721'
         app_alt2 = ''
     elif 1976 <= grant_year <= 2001:
         app_alt1 = 'inventors/'
@@ -84,10 +84,10 @@ def inv_rel_xml_paths(grant_year):
         app_city = 'addressbook/address/city'
         app_state = 'addressbook/address/state'
     elif 2002 <= grant_year <= 2004:
-        app_ln = './B721/PARTY-US/NAM/SNM/STEXT/PDAT'
-        app_fn = './B721/PARTY-US/NAM/FNM/PDAT'
-        app_city = './B721/PARTY-US/ADR/CITY/PDAT'
-        app_state = './B721/PARTY-US/ADR/STATE/PDAT'
+        app_ln = './PARTY-US/NAM/SNM/STEXT/PDAT'
+        app_fn = './PARTY-US/NAM/FNM/PDAT'
+        app_city = './PARTY-US/ADR/CITY/PDAT'
+        app_state = './PARTY-US/ADR/STATE/PDAT'
     elif 1976 <= grant_year <= 2001:
         app_ln = 'LN'
         app_fn = 'FN'
